@@ -5,7 +5,6 @@ import {
   Box,
   BorderBox,
   Flex,
-  Text,
   ButtonOutline
 } from "@primer/components";
 
@@ -15,17 +14,29 @@ export default function Home() {
   };
 
   return (
-    <Box bg="black" height={722}>
+    <Box bg="black" height="100vh">
       <Flex alignItems="center" justifyContent="center">
-        <BorderBox bg="white" width={600} margin={64} padding={24}>
-          <Heading mb={2} fontWeight="bold">
-            taag
-          </Heading>
-          <Text mb={2} fontWeight="bold">
-            sign in to taag to get a graph view of github issues!
-          </Text>
-          <br />
-          <ButtonOutline onClick={signin}>signin with github</ButtonOutline>
+        <BorderBox
+          bg="white"
+          width={500}
+          margin={64}
+          padding={48}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Flex
+            alignItems="center"
+            justifyContent="center"
+            flexDirection="column"
+          >
+            <Heading mb={2} fontWeight="bold">
+              taag
+            </Heading>
+            <br />
+            <Box height={400} width={400}></Box>
+            <br />
+            <ButtonOutline onClick={signin}>signin with github</ButtonOutline>
+          </Flex>
         </BorderBox>
       </Flex>
     </Box>

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useEffect } from "react";
 import history from "../Utils/history";
+import { CLIENT_ID } from "../config";
+import { userSignin } from "../services/userService";
 import {
   Heading,
   Box,
@@ -7,11 +9,18 @@ import {
   Flex,
   ButtonOutline
 } from "@primer/components";
+const qs = require("query-string");
 
-export default function Home() {
-  const signin = () => {
-    history.push(`/boards`);
+export default function Home(props) {
+  const signin = code => {
+    userSignin(code);
   };
+
+  useEffect(() => {
+    const code = qs.parse(history.location.search, { ignoreQueryPrefix: true })
+      .code;
+    code && signin(code);
+  }, [props]);
 
   return (
     <Box bg="black" height="100vh">
@@ -35,7 +44,12 @@ export default function Home() {
             <br />
             <Box height={400} width={400}></Box>
             <br />
-            <ButtonOutline onClick={signin}>signin with github</ButtonOutline>
+            <ButtonOutline
+              as="a"
+              href={`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}`}
+            >
+              signin with github
+            </ButtonOutline>
           </Flex>
         </BorderBox>
       </Flex>

@@ -10,6 +10,10 @@ export default [
     exact: true,
   },
   {
+    path: "/home",
+    component: () => <Home />,
+  },
+  {
     path: "/board/:id",
     component: () => <Board />,
   },

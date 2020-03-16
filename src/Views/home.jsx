@@ -12,15 +12,16 @@ import {
 const qs = require("query-string");
 
 export default function Home(props) {
-  const signin = code => {
-    userSignin(code);
-  };
-
   useEffect(() => {
     const code = qs.parse(history.location.search, { ignoreQueryPrefix: true })
       .code;
     code && signin(code);
   }, [props]);
+  
+  const signin = async code => {
+    const userId = await userSignin(code);
+    if (userId) history.push(`/boards`);
+  };
 
   return (
     <Box bg="black" height="100vh">

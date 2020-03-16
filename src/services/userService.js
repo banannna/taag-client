@@ -1,17 +1,20 @@
 import axios from "axios";
 import { SERVER_URL, AUTH_URL } from "../config";
+import { setToken } from "./authService";
 
-function userSignin(code) {
-  return new Promise((resolve, reject) => {
-    axios
-      .post(`${SERVER_URL}${AUTH_URL}/`, { code: code, authProvider: "github" })
-      .then(response => {
-        resolve(response);
-      })
-      .catch(err => {
-        reject("Error");
-      });
-  });
-}
+const userSignin = async code => {
+  try {
+    const res = await axios.post(`${SERVER_URL}${AUTH_URL}/`, {
+      code: code,
+      authProvider: "github"
+    });
+    console.log(res);
+    setToken(res.data.token);
+    return res.data;
+  } catch (err) {
+    console.log(`❗ ${err}`);
+    return err;
+  }
+};
 
 export { userSignin };

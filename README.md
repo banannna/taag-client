@@ -14,4 +14,4 @@ taag is a saas that helps you visualize your github tasks and issues in a graph.
 	```
 
 ### run
-- `node start`
+- `npm start`

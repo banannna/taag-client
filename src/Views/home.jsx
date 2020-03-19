@@ -11,15 +11,15 @@ import {
 } from "@primer/components";
 const qs = require("query-string");
 
-export default function Home(props) {
+const Home = props => {
   useEffect(() => {
     const code = qs.parse(history.location.search, { ignoreQueryPrefix: true })
       .code;
-    code && signin(code);
+    code && signinWithGithub(code);
   }, [props]);
-  
-  const signin = async code => {
-    const userId = await userSignin(code);
+
+  const signinWithGithub = async code => {
+    const userId = await userSignin(code, "github");
     if (userId) history.push(`/boards`);
   };
 
@@ -56,4 +56,6 @@ export default function Home(props) {
       </Flex>
     </Box>
   );
-}
+};
+
+export default Home;

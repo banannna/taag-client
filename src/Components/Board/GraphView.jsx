@@ -2,7 +2,7 @@ import { Graph } from "react-d3-graph";
 import React from "react";
 import Card from "../Boards/Card";
 
-export default function GraphView() {
+const GraphView = () => {
   const data = {
     nodes: [
       { id: "id1", fx: 300, fy: 100 },
@@ -33,7 +33,9 @@ export default function GraphView() {
       color: "lightgreen",
       highlightStrokeColor: "blue",
       renderLabel: false,
-      viewGenerator: node => <Card boardId={"fghfsdfsdfasdssssssssssssssssssdfsd"} />
+      viewGenerator: node => (
+        <Card boardId={"fghfsdfsdfasdssssssssssssssssssdfsd"} />
+      )
     },
     link: {
       highlightColor: "lightblue"
@@ -104,4 +106,6 @@ export default function GraphView() {
       onNodePositionChange={onNodePositionChange}
     />
   );
-}
+};
+
+export default GraphView;

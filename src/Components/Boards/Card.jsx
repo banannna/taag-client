@@ -2,7 +2,7 @@ import React from "react";
 import { Heading, ButtonOutline } from "@primer/components";
 import history from "../../Utils/history";
 
-export default function Navbar(props) {
+const Card = props => {
   const { boardId } = props;
 
   const open = () => {
@@ -16,4 +16,6 @@ export default function Navbar(props) {
       </Heading>
     </ButtonOutline>
   );
-}
+};
+
+export default Card;

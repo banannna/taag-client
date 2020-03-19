@@ -1,13 +1,21 @@
 import React from "react";
-import { Heading, BorderBox } from "@primer/components";
+import { Heading, ButtonOutline } from "@primer/components";
+import history from "../../Utils/history";
 
-export default function Navbar(props) {
-  const { path } = props;
+const Card = props => {
+  const { boardId } = props;
+
+  const open = () => {
+    history.push(`/board/` + boardId);
+  };
+
   return (
-    <BorderBox height="200px">
-      <Heading mb={2} fontSize={24} fontWeight="bold" color="white">
-        {path}
+    <ButtonOutline height="200px" onClick={open}>
+      <Heading mb={2} fontSize={24} fontWeight="bold">
+        {boardId}
       </Heading>
-    </BorderBox>
+    </ButtonOutline>
   );
-}
+};
+
+export default Card;
